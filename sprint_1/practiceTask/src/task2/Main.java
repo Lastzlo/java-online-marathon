@@ -38,5 +38,19 @@ public class Main {
         }
 
         employeesInfo += "]";
+        System.out.println(employeesInfo);
+
+        //Use Formatter
+        employeesInfo = "";
+        for(int i = 0; i < employees.length; i++) {
+            employeesInfo += String.format("{fullName: \"%s\", salary: %s}", employees[i].fullName, employees[i].salary);
+
+            if (i < (employees.length - 1)) {
+                employeesInfo += ", ";
+            }
+        }
+
+        System.out.println(employeesInfo);
+
     }
 }
