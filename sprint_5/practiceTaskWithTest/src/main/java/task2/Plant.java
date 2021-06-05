@@ -29,6 +29,7 @@ public class Plant {
         this.name = name;
 
         //второй вариант без getEnum
+        //через "word".toUpperCase()
 //        try {
 //            this.type = Type.valueOf(type.toUpperCase());
 //        } catch (IllegalArgumentException e) {
