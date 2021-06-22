@@ -26,35 +26,22 @@ class TestSuitHandler {
             return;
         }
 
-        try {
-            final Object obj = clazz.getConstructor().newInstance();
-            //get names of methods from TestSuite.value
-            for (String methodName : clazz.getAnnotation(TestSuite.class).value()) {
-                try {
-                    Method method = clazz.getMethod(methodName);
-                    if(Modifier.isStatic(method.getModifiers())) {
-                        throw new NoSuchMethodException();
-                    }
-
+        //get names of methods from TestSuite.value
+        for (String methodName : clazz.getAnnotation(TestSuite.class).value()) {
+            try {
+                Method method = clazz.getMethod(methodName);
+                if(Modifier.isStatic(method.getModifiers())) {
+                    System.out.printf("Method with name %s doesn't exists or not public in class %s\n", methodName, simpleClassName);
+                } else {
                     System.out.printf("\t-- Method %s.%s started --\n", simpleClassName, methodName);
-
-                    method.invoke(obj);
-
+                    method.invoke(clazz.getConstructor().newInstance());
                     System.out.printf("\t-- Method %s.%s finished --\n", simpleClassName, methodName);
-
-                } catch (IllegalAccessException
-                        | InvocationTargetException
-                        | NoSuchMethodException e) {
-                    System.out.printf("Method with name %s doesn't exists " +
-                            "or not public in class %s\n", methodName, simpleClassName);
                 }
+            } catch (NoSuchMethodException e) {
+                System.out.printf("Method with name %s doesn't exists or not public in class %s\n", methodName, simpleClassName);
+            } catch (IllegalAccessException | InvocationTargetException | InstantiationException e) {
+                e.printStackTrace();
             }
-
-        } catch (InstantiationException
-                | IllegalAccessException
-                | InvocationTargetException
-                | NoSuchMethodException e) {
-            e.printStackTrace();
         }
     }
 }
