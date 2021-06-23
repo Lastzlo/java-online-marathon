@@ -23,6 +23,11 @@ public class MyUtilsPostgreDoWithDate {
     }
 
     @Test
+    void createTableRoles2() throws SQLException{
+        myUtils.createTableRoles2();
+    }
+
+    @Test
     void createAllTables() throws SQLException{
         myUtils.createTableRoles();
         myUtils.createTableDirections();
