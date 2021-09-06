@@ -14,7 +14,7 @@ import java.lang.reflect.Modifier;
     String[] value();
 }
 
-class TestSuitHandler {
+public class TestSuitHandler {
     @SuppressWarnings("unchecked")
     public static void run(Class<?> clazz) {
         String className = clazz.getName();
