@@ -44,7 +44,7 @@ public class MyUtilsPostgreDoWithDate {
     }
 
     @Test
-    void insertDatai_insertTableRoles() throws SQLException {
+    void insertData_insertTableRoles() throws SQLException {
         myUtils.insertTableRoles("Developer");
         myUtils.insertTableRoles("DevOps");
         myUtils.insertTableRoles("QC");
